@@ -20,8 +20,13 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v2
-      - name: Run Migrations
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with: 
+          node-version: "14.x"
+      - name: Install dependencies
         run: npm install
+      - name: Run Migrations
         run: npx knex migrate:latest --env production
         env:
           DATABASE_URL: ${{secrets.DATABASE_URL}}
