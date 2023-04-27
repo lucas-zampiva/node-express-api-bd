@@ -26,4 +26,4 @@ jobs:
           heroku_app_name: ${{secrets.HEROKU_API_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_API_EMAIL}}
           justlogin: true
-      - run: heroku run knex migrate:latest
+      - run: heroku run knex migrate:latest -a ${{secrets.HEROKU_API_APP_NAME}}
