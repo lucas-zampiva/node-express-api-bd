@@ -21,7 +21,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run Migrations
+        run: npm install
         run: npx knex migrate:latest --env production
+        env:
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12 
         with:
